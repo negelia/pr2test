@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Ридеры</title>
+</head>
+<body>
+<div th:insert="blocks/header"></div>
+<h1>Ридеры</h1>
+<a href="/reader/filter">Поиск ридера</a>
+<a href="/reader/add">Добвить ридера</a>
+<div th:each="el : ${readers}">
+    <h3 th:text="${el.surname}"></h3>
+    <p th:text="${el.name}"></p>
+</div>
+</body>
+</html>

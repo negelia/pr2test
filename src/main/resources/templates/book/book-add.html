@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Добавление новой книжечки</title>
+</head>
+<body>
+<form th:action="${'/book/add'}" method="post">
+    <input type="text" name="title" placeholder="Введите название книжечки"><br>
+    <input type="text" name="author" placeholder="Введите автора книжечки"><br>
+    <p><label><input type="checkbox" name="ordered" value="1">
+        <span>Заказана?</span></label></p>
+    <input type="date" name="date" placeholder="Введите год издания книжечки"><br>
+    <input type="number" name="pages" placeholder="Введите количество страниц"><br>
+    <button type="submit">Добавить книжечку</button>
+</form>
+</body>
+</html>

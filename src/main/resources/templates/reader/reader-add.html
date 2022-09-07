@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Добавление нового ридера</title>
+</head>
+<body>
+<form th:action="${'/reader/add'}" method="post">
+    <input type="text" name="surname" placeholder="Введите фамилию"><br>
+    <input type="text" name="name" placeholder="Введите имя"><br>
+    <p><label><input type="checkbox" name="middle" value="1">
+        <span>Есть отчество</span></label></p>
+    <input type="number" name="age" placeholder="Введите возраст"><br>
+    <input type="number" name="groupName" placeholder="Введите номер группы"><br>
+    <button type="submit">Добавить ридера</button>
+</form>
+</body>
+</html>

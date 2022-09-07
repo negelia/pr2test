@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Книжечки</title>
+</head>
+<body>
+<div th:insert="blocks/header"></div>
+<h1>Все книжечки</h1>
+<a href="/book/filter">Поиск книжечек</a>
+<a href="/book/add">Добвить книжечку</a>
+<div th:each="el : ${books}">
+    <h3 th:text="${el.title}"></h3>
+    <p th:text="${el.author}"></p>
+</div>
+</body>
+</html>
