@@ -12,6 +12,7 @@
 <div th:each="el : ${books}">
     <h3 th:text="${el.title}"></h3>
     <p th:text="${el.author}"></p>
+    <a th:href="'/book/' + ${el.iDBook}"> Подробнее </a>
 </div>
 </body>
 </html>

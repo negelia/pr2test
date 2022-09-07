@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+<div th:each="el : ${reader}">
+  <h3>Подробнее про ридера: </h3>
+  <h3 th:text="${el.surname}"></h3>
+  <p th:text="${el.name}"></p>
+  <p th:text="${el.middle}"></p>
+  <p th:text="${el.age}"></p>
+  <p th:text="${el.groupName}"></p>
+  <a th:href="'/reader/' + ${el.id} + '/edit'">Редактировать</a>
+  <form th:action="'/reader/' + ${el.id} + '/remove'" method="post">
+    <button type="submit" class="btn btn-del">Удалить</button>
+  </form>
+</div>
+</body>

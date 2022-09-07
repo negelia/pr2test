@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+<div th:each="el : ${book}">
+  <h3>Подробнее про книжечку: </h3>
+  <h3 th:text="${el.title}"></h3>
+  <p th:text="${el.author}"></p>
+  <p th:text="${el.date}"></p>
+  <p th:text="${el.ordered}"></p>
+  <p th:text="${el.pages}"></p>
+  <a th:href="'/book/' + ${el.iDBook} + '/edit'">Редактировать</a>
+  <form th:action="'/book/' + ${el.iDBook} + '/remove'" method="post">
+    <button type="submit" class="btn btn-del">Удалить</button>
+  </form>
+</div>
+</body>

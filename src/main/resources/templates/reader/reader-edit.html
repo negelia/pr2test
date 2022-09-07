@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Редактирование ридера</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div th:each="el : ${reader}">
+  <form method="post">
+    <input th:value="${el.surname}" type="text" name="surname" placeholder="Введите фамилию"><br>
+    <input th:value="${el.name}" type="text" name="name" placeholder="Введите имя"><br>
+    <p><label><input type="checkbox" name="middle" th:value="${el.middle}">
+      <span>Есть отчество</span></label></p>
+    <input th:value="${el.age}" type="number" name="age" placeholder="Введите возраст"><br>
+    <input th:value="${el.groupName}" type="number" name="groupName" placeholder="Введите номер группы"><br>
+    <br>
+    <button type="submit">Сохранить изменения</button>
+  </form>
+</div>
+</body>
+</html>

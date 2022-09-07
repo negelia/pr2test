@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity
 public class Book {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long iDBook;
 
     private String title, author;

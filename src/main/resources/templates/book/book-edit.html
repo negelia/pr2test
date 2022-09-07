@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Редактирование книжечки</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div th:each="el : ${book}">
+  <form method="post">
+    <input type="text" th:value="${el.title}" name="title" placeholder="Введите название">
+    <input type="text" th:value="${el.author}" name="author" placeholder="Введите автора">
+    <p><label><input type="checkbox" th:value="${el.ordered}" name="ordered">
+      <span>Заказана?</span></label></p>
+    <input type="date" th:value="${el.date}" name="date" placeholder="Введите год издания книжечки"><br>
+    <input type="number" th:value="${el.pages}" name="pages" placeholder="Введите количество страниц"><br>
+    <br>
+    <button type="submit">Сохранить изменения</button>
+  </form>
+</div>
+</body>
+</html>
