@@ -1,19 +1,48 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <link rel="stylesheet" href="/css/details.css">
+  <title>Детали</title>
 </head>
 <body>
-<div th:each="el : ${book}">
-  <h3>Подробнее про книжечку: </h3>
-  <h3 th:text="${el.title}"></h3>
-  <p th:text="${el.author}"></p>
-  <p th:text="${el.date}"></p>
-  <p th:text="${el.ordered}"></p>
-  <p th:text="${el.pages}"></p>
-  <a th:href="'/book/' + ${el.iDBook} + '/edit'">Редактировать</a>
-  <form th:action="'/book/' + ${el.iDBook} + '/remove'" method="post">
-    <button type="submit" class="btn btn-del">Удалить</button>
-  </form>
-</div>
+<!--<div th:each="el : ${book}">-->
+<!--  <h3>Подробнее про книжечку: </h3>-->
+<!--  <h3 th:text="${el.title}"></h3>-->
+<!--  <p th:text="${el.author}"></p>-->
+<!--  <p th:text="${el.date}"></p>-->
+<!--  <p th:text="${el.ordered}"></p>-->
+<!--  <p th:text="${el.pages}"></p>-->
+<!--  <a th:href="'/book/' + ${el.iDBook} + '/edit'">Редактировать</a>-->
+<!--  <form th:action="'/book/' + ${el.iDBook} + '/remove'" method="post">-->
+<!--    <button type="submit" class="btn btn-del">Удалить</button>-->
+<!--  </form>-->
+<!--</div>-->
+
+<div th:insert="blocks/header"></div>
+<table id="book1">
+  <tr>
+    <th>Название</th>
+    <th>Автор</th>
+    <th>Дата</th>
+    <th>Заказ</th>
+    <th>Страницы</th>
+    <th>Редактирование</th>
+    <th>Удаление</th>
+  </tr>
+  <div th:each="el : ${book}">
+    <tr>
+      <td th:text="${el.title}"></td>
+      <td th:text="${el.author}"></td>
+      <td th:text="${el.date}"></td>
+      <td th:text="${el.ordered}"></td>
+      <td th:text="${el.pages}"></td>
+      <td><a th:href="'/book/' + ${el.iDBook} + '/edit'">Редактировать</a></td>
+      <td><form th:action="'/book/' + ${el.iDBook} + '/remove'" method="post">
+        <button type="submit" class="btn btn-del">Удалить</button>
+      </form></td>
+    </tr>
+  </div>
+</table>
+
 </body>

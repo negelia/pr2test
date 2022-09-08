@@ -2,17 +2,34 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/home.css">
     <title>Книжечки</title>
 </head>
 <body>
+
+<!--<h1>Все книжечки</h1>-->
+<!--<a href="/book/filter">Поиск книжечек</a>-->
+<!--<a href="/book/add">Добвить книжечку</a>-->
+<!--<div th:each="el : ${books}">-->
+<!--    <h3 th:text="${el.title}"></h3>-->
+<!--    <p th:text="${el.author}"></p>-->
+<!--    <a th:href="'/book/' + ${el.iDBook}"> Подробнее </a>-->
+<!--</div>-->
+
 <div th:insert="blocks/header"></div>
-<h1>Все книжечки</h1>
-<a href="/book/filter">Поиск книжечек</a>
-<a href="/book/add">Добвить книжечку</a>
-<div th:each="el : ${books}">
-    <h3 th:text="${el.title}"></h3>
-    <p th:text="${el.author}"></p>
-    <a th:href="'/book/' + ${el.iDBook}"> Подробнее </a>
-</div>
+<table id="book">
+    <tr>
+        <th>Название</th>
+        <th>Автор</th>
+        <th>Детали</th>
+    </tr>
+    <div th:each="el : ${books}">
+        <tr>
+            <td th:text="${el.title}"></td>
+            <td th:text="${el.author}"></td>
+            <td><a th:href="'/book/' + ${el.iDBook}">Подробнее</a></td>
+        </tr>
+    </div>
+</table>
 </body>
 </html>

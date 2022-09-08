@@ -2,19 +2,48 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Редактирование книжечки</title>
+  <link rel="stylesheet" href="/css/edit.css">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+<div th:insert="blocks/header"></div>
 <div th:each="el : ${book}">
-  <form method="post">
-    <input type="text" th:value="${el.title}" name="title" placeholder="Введите название">
-    <input type="text" th:value="${el.author}" name="author" placeholder="Введите автора">
-    <p><label><input type="checkbox" th:value="${el.ordered}" name="ordered">
-      <span>Заказана?</span></label></p>
-    <input type="date" th:value="${el.date}" name="date" placeholder="Введите год издания книжечки"><br>
-    <input type="number" th:value="${el.pages}" name="pages" placeholder="Введите количество страниц"><br>
-    <br>
-    <button type="submit">Сохранить изменения</button>
+<!--  <form method="post">-->
+<!--    <input type="text" class="required" th:value="${el.title}" name="title" placeholder="Введите название">-->
+<!--    <input type="text" class="required" th:value="${el.author}" name="author" placeholder="Введите автора">-->
+<!--    <p><label><input type="checkbox" th:value="${el.ordered}" name="ordered">-->
+<!--      <span>Заказана?</span></label></p>-->
+<!--    <input type="date" class="required" th:value="${el.date}" name="date" placeholder="Введите год издания книжечки"><br>-->
+<!--    <input type="number" class="required" th:value="${el.pages}" name="pages" placeholder="Введите количество страниц"><br>-->
+<!--    <br>-->
+<!--    <button type="submit">Сохранить изменения</button>-->
+<!--  </form>-->
+
+  <form>
+    <ul class="form-style-1" method="post">
+      <li>
+        <label>Название книжечки <span class="required">*</span></label>
+        <input type="text" th:value="${el.title}" name="title" class="field-divided"/>
+      <li>
+        <label>Автор <span class="required">*</span></label>
+        <input type="text" th:value="${el.author}" name="author" class="field-long" />
+      </li>
+      <li>
+        <p><label><input type="checkbox" th:value="${el.ordered}" name="ordered">
+          <span>Заказана?</span></label></p>
+      </li>
+      <li>
+        <label>Дата издания<span class="required">*</span></label>
+        <input th:value="${el.date}" name="date" class="field-long" />
+      </li>
+      <li>
+        <label>Количество страниц <span class="required">*</span></label>
+        <input type="number" th:value="${el.pages}" name="pages" class="field-long" />
+      </li>
+      <li>
+        <button type="submit">Подтвердить</button>>
+      </li>
+    </ul>
   </form>
 </div>
 </body>
