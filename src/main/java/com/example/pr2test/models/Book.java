@@ -1,20 +1,32 @@
 package com.example.pr2test.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
+import javax.validation.constraints.*;
 
 @Entity
 public class Book {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long iDBook;
 
+    @NotEmpty(message = "Поле не может быть пустым")
+    @Size(min=2, max = 50, message = "Введите от 2х до 50ти символов")
     private String title, author;
+
+    @NotNull(message = "Введите дату")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Past(message = "Проверьте правильность даты")
     private String date;
+
     private Boolean ordered;
+
+    @Digits(integer = 1000, fraction = 0, message = "Введите не более 1000 знаков")
+    @Positive(message = "В книге не может содержатся 0 и меньше страниц")
     private int pages;
 
     public Book(String title, String author, String date, Boolean ordered, int pages) {

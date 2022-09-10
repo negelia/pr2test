@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Добавление новой книжечки</title>
 </head>
 <body>
-<form th:action="${'/book/add'}" method="post">
-    <input type="text" name="title" placeholder="Введите название книжечки"><br>
-    <input type="text" name="author" placeholder="Введите автора книжечки"><br>
+<form th:action="${'/book/add'}" method="post" th:object="${book}">
+    <input th:field="*{title}" type="text" name="title" placeholder="Введите название книжечки"><br>
+    <div style="color: red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div><br>
+    <input th:field="*{author}" type="text" name="author" placeholder="Введите автора книжечки"><br>
+    <div style="color: red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></div><br>
     <p><label><input type="checkbox" name="ordered" value="1">
         <span>Заказана?</span></label></p>
     <input type="date" name="date" placeholder="Введите год издания книжечки"><br>

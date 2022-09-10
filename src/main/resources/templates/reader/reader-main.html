@@ -11,8 +11,9 @@
     <tr>
         <th>Фамилия</th>
         <th>Имя</th>
+        <th>Детали</th>
     </tr>
-    <div th:each="el : ${reader}">
+    <div th:each="el : ${readers}">
         <tr>
             <td th:text="${el.surname}"></td>
             <td th:text="${el.name}"></td>
