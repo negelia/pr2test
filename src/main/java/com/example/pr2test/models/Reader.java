@@ -4,6 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Reader {
@@ -12,9 +16,13 @@ public class Reader {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotEmpty(message = "Поле не может быть пустым")
+    @Size(min=2, max = 50, message = "Введите от 2х до 50ти символов")
     private String surname, name;
     private Boolean middle;
+    @Digits(integer = 100, fraction = 0, message = "Введите не более 100 знаков")
     private int age;
+    @Positive(message = "Проверьте номер группы")
     private int groupName;
 
     public Reader(String surname, String name, Boolean middle, int age, int groupName) {

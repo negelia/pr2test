@@ -19,8 +19,6 @@ public class Book {
     private String title, author;
 
     @NotNull(message = "Введите дату")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Past(message = "Проверьте правильность даты")
     private String date;
 
     private Boolean ordered;

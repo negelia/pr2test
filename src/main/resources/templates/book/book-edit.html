@@ -20,12 +20,12 @@
       <div style="color: red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></div><br>
       </li>
       <li>
-        <p><label><input type="checkbox" th:value="${el.ordered}" name="ordered">
+        <p><label><input type="checkbox" name="ordered">
           <span>Заказана?</span></label></p>
       </li>
       <li>
         <label>Дата издания<span class="required">*</span></label>
-        <input th:value="${el.date}" name="date" class="field-long" />
+        <input th:value="${el.date}" name="date" class="field-long" max="2022-08-31" min="1985-04-23" required/>
         <div style="color: red" th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></div><br>
       </li>
       <li>

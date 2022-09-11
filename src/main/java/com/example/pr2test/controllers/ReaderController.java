@@ -6,11 +6,10 @@ import com.example.pr2test.repo.ReaderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -30,18 +29,17 @@ public class ReaderController {
     }
 
     @GetMapping("/reader/add")
-    public String readerAdd(Model model){
+    public String readerAdd(Reader reader, Model model){
         return "/reader/reader-add";
     }
 
     @PostMapping("/reader/add")
-    public String readerPostAdd(@RequestParam String surname,
-                              @RequestParam String name,
-                              @RequestParam Boolean middle,
-                                @RequestParam int age,
-                                @RequestParam int groupName,
-                                Model model){
-        Reader reader = new Reader(surname,name, middle, age, groupName);
+    public String readerAdd(@ModelAttribute("reader") @Valid Reader reader,
+                          BindingResult bindingResult)
+    {
+        if(bindingResult.hasErrors()){
+            return "/reader/reader-add";
+        }
         readerRepository.save(reader);
         return "redirect:/reader";
     }
@@ -74,30 +72,20 @@ public class ReaderController {
     public String readerEdit(@PathVariable("id")long id,
                            Model model)
     {
-        if(!readerRepository.existsById(id)){
-            return "redirect:/reader";
-        }
-        Optional<Reader> post = readerRepository.findById(id);
-        ArrayList<Reader> res = new ArrayList<>();
-        post.ifPresent(res::add);
+        Reader res = readerRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Неверный id:" + id));
         model.addAttribute("reader",res);
+
         return "/reader/reader-edit";
     }
+
     @PostMapping("/reader/{id}/edit")
-    public String readerUpdate(@PathVariable("id")long id,
-                             @RequestParam String surname,
-                             @RequestParam String name,
-                             @RequestParam Boolean middle,
-                             @RequestParam int age,
-                             @RequestParam int groupName,
-                             Model model)
-    {
-        Reader reader = readerRepository.findById(id).orElseThrow();
-        reader.setSurname(surname);
-        reader.setName(name);
-        reader.setMiddle(middle);
-        reader.setAge(age);
-        reader.setGroupName(groupName);
+    public String readerUpdate(@ModelAttribute("reader") @Valid Reader reader,
+                             BindingResult bindingResult,
+                             @PathVariable("id") Long id) {
+        reader.setId(id);
+        if (bindingResult.hasErrors())
+            return "/reader/reader-edit";
+
         readerRepository.save(reader);
         return "redirect:/reader";
     }

@@ -2,17 +2,42 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/edit.css">
     <title>Добавление нового ридера</title>
 </head>
 <body>
-<form th:action="${'/reader/add'}" method="post">
-    <input type="text" name="surname" placeholder="Введите фамилию"><br>
-    <input type="text" name="name" placeholder="Введите имя"><br>
-    <p><label><input type="checkbox" name="middle" value="1">
-        <span>Есть отчество</span></label></p>
-    <input type="number" name="age" placeholder="Введите возраст"><br>
-    <input type="number" name="groupName" placeholder="Введите номер группы"><br>
-    <button type="submit">Добавить ридера</button>
-</form>
+<div th:insert="blocks/header"></div>
+<div th:each="el : ${reader}">
+    <form method="post" th:object="${reader}">
+        <ul class="form-style-1" method="post">
+            <li>
+                <label>Фамилия <span class="required">*</span></label>
+                <input type="text" th:value="${el.surname}" name="surname" class="field-divided"/>
+                <div style="color: red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></div><br>
+            <li>
+                <label>Имя <span class="required">*</span></label>
+                <input type="text" th:value="${el.name}" name="name" class="field-long" />
+            <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div><br>
+            </li>
+            <li>
+                <p><label><input type="checkbox" th:value="${el.middle}" name="middle">
+                    <span>Отчество</span></label></p>
+            </li>
+            <li>
+                <label>Возраст <span class="required">*</span></label>
+                <input type="number" th:value="${el.age}" name="age" min="16" max="100" class="field-long" />
+                <div style="color: red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div><br>
+            </li>
+            <li>
+                <label>Группа <span class="required">*</span></label>
+                <input type="number" th:value="${el.groupName}" name="groupName" class="field-long" />
+                <div style="color: red" th:if="${#fields.hasErrors('groupName')}" th:errors="*{groupName}"></div><br>
+            </li>
+            <li>
+                <button type="submit">Подтвердить </button>
+            </li>
+        </ul>
+    </form>
+</div>
 </body>
 </html>
